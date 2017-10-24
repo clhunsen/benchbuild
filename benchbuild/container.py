@@ -66,7 +66,8 @@ def setup_container(builddir, container):
 
 def run_in_container(command, container_dir, mounts):
     uchroot = uchroot_no_args()["-E", "-A", "-u", "0", "-g", "0", "-C", "-w",
-                                "/", "-r", os.path.abspath(container_dir)]
+                                "/", "-r", os.path.abspath(container_dir),
+                                "-m", "/run/shm:/run/shm"]
     uchroot_m = uchroot
     uchroot = uchroot["--"]
 
