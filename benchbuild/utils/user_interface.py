@@ -1,6 +1,7 @@
 """
 User interface helpers for benchbuild.
 """
+import os
 import sys
 
 
@@ -42,6 +43,6 @@ def query_yes_no(question, default="yes"):
 
 def ask(question, default_answer=False, default_answer_str="no"):
     response = default_answer
-    if sys.stdin.isatty():
+    if sys.stdin.isatty() and not "SLURM_JOB_ID" in os.environ:
         response = query_yes_no(question, default_answer_str)
     return response
